@@ -30,13 +30,22 @@
 - Thought Loop used for all decisions: initial answer → list errors → verify → correct final answer
 - Drift Guard prevents editing SOUL.md in same session as memory additions
 
-## Recent Work (2026-04-02)
+## Recent Work (2026-04-02 to 2026-04-03)
 
-Built a modern system monitoring dashboard that:
-- Shows real-time CPU, Memory, Disk, Load, and top processes
-- Uses glass-morphism design with Chart.js sparklines
-- Auto-refreshes every 3 seconds
-- Mobile responsive
-- Can be started with: `node /root/.openclaw/workspace/dashboard/server.js`
+**2026-04-02:**
+Built a modern system monitoring dashboard (Node.js + Chart.js) with glass-morphism UI, real-time charts, mobile responsiveness. Modified OpenClaw gateway to bind to 0.0.0.0 for external access. All changes committed.
 
-Modified OpenClaw gateway to allow external access (0.0.0.0 binding). All changes committed to git.
+**2026-04-03:**
+- Researched & documented Gemma 4 models (E2B, E4B, 26B-A4B, 31B). Determined server (7.8GB RAM) can run E2B or E4B locally.
+- Enabled Telegram exec approvals correctly (`channels.telegram.execApprovals` with numeric user ID 6045828445). Tested `/approve` workflow successfully.
+- Installed Tailscale for secure private networking. Fixed APT repo issue (removed monarx.list). Currently awaiting user authentication to complete `tailscale up`.
+- Next: Configure OpenClaw to use Tailscale, then install Gemma 4 E2B via Ollama for local AI capabilities.
+
+## Configuration Changes
+
+- `/root/.openclaw/openclaw.json`:
+  - `gateway.bind`: `0.0.0.0` (accessible on all interfaces)
+  - `channels.telegram.execApprovals.enabled`: `true`
+  - `channels.telegram.execApprovals.approvers`: `[6045828445]`
+  - `channels.telegram.execApprovals.target`: `"dm"`
+- Tailscale installed, awaiting activation
